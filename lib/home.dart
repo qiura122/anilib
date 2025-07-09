@@ -1,7 +1,9 @@
+import 'package:anime_library/Widgets/about_page.dart';
 import 'package:anime_library/Widgets/browse_page.dart';
 import 'package:anime_library/Widgets/profile_page.dart';
 import 'package:anime_library/Widgets/settings_page.dart';
 import 'package:anime_library/Widgets/notif_page.dart';
+import 'package:anime_library/Widgets/add_user.dart';
 import 'package:flutter/material.dart';
 import 'Pages/dressdarling_page.dart';
 import 'Pages/frieren_page.dart';
@@ -23,28 +25,22 @@ class Home extends StatelessWidget {
         leading: PopupMenuButton<String>(
           icon: const Icon(Icons.menu),
           onSelected: (value) {
-            if (value == 'Profil') {
+            if (value == 'Add User') {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
+                MaterialPageRoute(builder: (context) => AddUser()),
               );
-            } else if (value == 'Browse') {
+            } else if (value == 'About') {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BrowsePage()),
-              );
-            } else if (value == 'Settings') {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SettingsPage()),
+                MaterialPageRoute(builder: (context) => AboutPage()),
               );
             }
           },
           itemBuilder:
               (BuildContext context) => [
-                const PopupMenuItem(value: 'Profil', child: Text('Profil')),
-                const PopupMenuItem(value: 'Browse', child: Text('Browse')),
-                const PopupMenuItem(value: 'Settings', child: Text('Settings')),
+                const PopupMenuItem(value: 'Add User', child: Text('Add User')),
+                const PopupMenuItem(value: 'About', child: Text('About')),
               ],
         ),
         titleSpacing: 0,
@@ -141,15 +137,39 @@ class Home extends StatelessWidget {
           children: [
             IconButton(
               icon: const Icon(Icons.home, color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                );
+              },
             ),
             IconButton(
-              icon: const Icon(Icons.favorite, color: Colors.white),
-              onPressed: () {},
+              icon: const Icon(Icons.explore, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BrowsePage()),
+                );
+              },
             ),
             IconButton(
               icon: const Icon(Icons.person, color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
+              },
             ),
           ],
         ),

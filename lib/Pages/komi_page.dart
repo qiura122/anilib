@@ -1,24 +1,107 @@
 import 'package:flutter/material.dart';
 
-class KomiPage extends StatelessWidget {
+class KomiPage extends StatefulWidget {
+  KomiPage({Key? key}) : super(key: key);
+
+  @override
+  State<KomiPage> createState() => _KomiPageState();
+}
+
+class _KomiPageState extends State<KomiPage> {
+  final TextEditingController _commentController = TextEditingController();
+  final List<String> _comments = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Komi-san wa, Komyushou desu.')),
-      body: Column(
-        children: [
-          Image.asset('images/komi.png', height: 300, width: 200),
-          Text(
-            'Komi-san wa, Komyushou desu.',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Komi-san wa, Komyushou desu. is a romantic comedy anime that follows the story of a high school girl named Shouko Komi, who has a communication disorder. Despite her beauty and popularity, she struggles to make friends and communicate with others. The story follows her journey as she tries to overcome her challenges with the help of her classmate, Tadano.',
+      appBar: AppBar(title: Text('Komi Can\'t Communicate')),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          // Agar bisa discroll saat keyboard muncul
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Image.asset('images/komi.png', height: 300, width: 200),
+                Text(
+                  'Komi Can\'t Communicate',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Komi Can\'t Communicate is a romantic comedy anime that follows the story of a high school girl named Shoko Komi, who has a severe communication disorder. Despite her beauty and popularity, she struggles to make friends and express herself. With the help of her classmate Tadano, she embarks on a journey to overcome her challenges and make 100 friends.',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Form(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _commentController,
+                            decoration: InputDecoration(
+                              labelText: 'Tulis komentar...',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton(
+                          onPressed: () {
+                            final comment = _commentController.text;
+                            if (comment.isNotEmpty) {
+                              setState(() {
+                                _comments.add(comment);
+                              });
+                              _commentController.clear();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Komentar terkirim: $comment'),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text('Kirim'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  height: 200, // Atur tinggi agar list komentar tetap terlihat
+                  child:
+                      _comments.isEmpty
+                          ? Center(child: Text('Belum ada komentar.'))
+                          : ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            itemCount: _comments.length,
+                            itemBuilder:
+                                (context, index) => Card(
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: 4,
+                                  ),
+                                  child: ListTile(
+                                    leading: Icon(Icons.comment),
+                                    title: Text(_comments[index]),
+                                  ),
+                                ),
+                          ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

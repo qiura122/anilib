@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": 101,
+      "email": "akira.tanaka@example.com",
+      "first_name": "Akira",
+      "last_name": "Tanaka",
+      "avatar": "https://i.pravatar.cc/150?img=11"
+    },
+    {
+      "id": 102,
+      "email": "lisa.kim@example.com",
+      "first_name": "Lisa",
+      "last_name": "Kim",
+      "avatar": "https://i.pravatar.cc/150?img=12"
+    },
+    {
+      "id": 103,
+      "email": "marco.rossi@example.com",
+      "first_name": "Marco",
+      "last_name": "Rossi",
+      "avatar": "https://i.pravatar.cc/150?img=13"
+    },
+    {
+      "id": 104,
+      "email": "siti.nurhaliza@example.com",
+      "first_name": "Siti",
+      "last_name": "Nurhaliza",
+      "avatar": "https://i.pravatar.cc/150?img=14"
+    },
+    {
+      "id": 105,
+      "email": "john.smith@example.com",
+      "first_name": "John",
+      "last_name": "Smith",
+      "avatar": "https://i.pravatar.cc/150?img=15"
+    }
+  ]
+}
