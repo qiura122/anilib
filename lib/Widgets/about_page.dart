@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class AboutPage extends StatelessWidget {
   final String apiUrl =
-      "https://68773301dba809d901ee3b6e.mockapi.io/api/v1/users"; // ganti dengan url kamu
+      "https://68773301dba809d901ee3b6e.mockapi.io/api/v1/users";
 
   Future<List<dynamic>> _fetchData() async {
     var result = await http.get(Uri.parse(apiUrl));
