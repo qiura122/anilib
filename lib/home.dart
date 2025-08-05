@@ -88,7 +88,7 @@ class Home extends StatelessWidget {
             'Orb: On the Movement of the Earth',
             'One Punch Man',
             'Jojo\'s Bizarre Adventure',
-            'Dress-Darling',
+            'My Dress-Up Darling',
             'Horimiya',
             'Komi-san wa, Komyushou desu.',
             'Spy x Family',

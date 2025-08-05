@@ -3,19 +3,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AboutPage extends StatelessWidget {
-  final String apiUrl = "https://reqres.in/api/users";
-  final String apiKey = "reqres-free-v1";
+  final String apiUrl =
+      "https://68773301dba809d901ee3b6e.mockapi.io/api/v1/users"; // ganti dengan url kamu
 
   Future<List<dynamic>> _fetchData() async {
-    var result = await http.get(
-      Uri.parse(apiUrl),
-      headers: {
-        'x-api-key': apiKey,
-      },
-    );
-
+    var result = await http.get(Uri.parse(apiUrl));
     if (result.statusCode == 200) {
-      return json.decode(result.body)['data'];
+      return json.decode(result.body);
     } else {
       throw Exception("Failed to load data");
     }
